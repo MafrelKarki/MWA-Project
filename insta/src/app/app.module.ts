@@ -14,6 +14,7 @@ import { UserService } from "./auth/user.service";
 import { AuthService } from "./auth/auth.service";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
+import { AuthInterceptor } from "./auth/auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { PostListComponent } from "./posts/post-list/post-list.component";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, AuthService],
+  providers: [UserService, AuthService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
