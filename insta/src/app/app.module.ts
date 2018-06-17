@@ -8,7 +8,7 @@ import { HeaderComponent } from "./header/header.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { AngularMaterialModule } from "./angular-material.module";
 import { LoginComponent } from './auth/login/login.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SignupComponent } from './auth/signup/signup.component';
 import { UserService } from "./auth/user.service";
 import { AuthService } from "./auth/auth.service";
@@ -30,7 +30,8 @@ import { PostListComponent } from "./posts/post-list/post-list.component";
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [UserService, AuthService],
   bootstrap: [AppComponent]
