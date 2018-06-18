@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 var SchemaTypes = mongoose.Schema.Types;
 
-
 const postSchema = mongoose.Schema({
   // content: { type: String, required: true },
   title: { type: String, required: true },
-  imagePath: {type: String},
+  content: { type: String},
+  imagePath: {type: String, required: true},
   userId: {type:SchemaTypes.ObjectId},
   points: {type: Number, Default: 0},
   comments: [SchemaTypes.ObjectId],

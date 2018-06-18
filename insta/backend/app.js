@@ -5,11 +5,16 @@ const mongoose = require("mongoose");
 
 //Routes
 const userRoutes = require("./routes/user");
+<<<<<<< HEAD
 const postRoutes = require("./routes/post");
 const commentRoutes = require("./routes/comment");
 const likeRoutes = require("./routes/like");
 const followRoutes = require("./routes/follow");
 const feedRoutes = require("./routes/posts");
+=======
+const postsRoutes = require("./routes/posts");
+const commentRoutes = require("./routes/comment");
+>>>>>>> 45de0d0ddd66be8e71f8e5851baa3298b39052ed
 
 const app = express();
 
@@ -46,6 +51,7 @@ app.use((req, res, next) => {
   next();
 });
 
+<<<<<<< HEAD
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/users', postRoutes);
 app.use("/api/v1/users", commentRoutes);
@@ -91,5 +97,10 @@ app.use("/api/v1/posts", feedRoutes);
 app.listen(3000, function(){
   console.log("listening to port 3000");
 });
+=======
+app.use("/api/user", userRoutes);
+app.use("/api/posts", postsRoutes);
+app.use("/api/v1/users", commentRoutes);
+>>>>>>> 45de0d0ddd66be8e71f8e5851baa3298b39052ed
 
 module.exports = app;
