@@ -61,6 +61,10 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
+  like(postId: string) {
+    alert('liked');
+  }
+
   ngOnDestroy() {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
