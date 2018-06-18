@@ -28,7 +28,7 @@
   <mat-card>
       <form (submit)="onComment(commentForm)" #commentForm="ngForm">
           <mat-form-field>
-            <input matInput name="comment" ngModel placeholder="Comment" #commentInput="ngModel" required>
+            <textarea matInput name="comment" ngModel placeholder="Comment" #commentInput="ngModel" required></textarea>
             <mat-error *ngIf="commentInput.invalid">Please enter a comment.</mat-error>
           </mat-form-field>
           <button mat-raised-button color="accent" type="submit">Post</button>
