@@ -15,6 +15,8 @@ import { AuthService } from "./auth/auth.service";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
 import { AuthInterceptor } from "./auth/auth-interceptor";
+import { ErrorInterceptor } from "./error-interceptor";
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
     LoginComponent,
     SignupComponent,
     PostCreateComponent,
-    PostListComponent
+    PostListComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,12 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, AuthService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
-  bootstrap: [AppComponent]
+  providers: [UserService, 
+              AuthService, 
+              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+              {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+            ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }
