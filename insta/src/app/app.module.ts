@@ -8,12 +8,16 @@ import { HeaderComponent } from "./header/header.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { AngularMaterialModule } from "./angular-material.module";
 import { LoginComponent } from './auth/login/login.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SignupComponent } from './auth/signup/signup.component';
 import { UserService } from "./auth/user.service";
 import { AuthService } from "./auth/auth.service";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { PostListComponent } from "./posts/post-list/post-list.component";
+import { AuthInterceptor } from "./auth/auth-interceptor";
+import { ErrorInterceptor } from "./error-interceptor";
+import { ErrorComponent } from './error/error.component';
+import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { PostListComponent } from "./posts/post-list/post-list.component";
     LoginComponent,
     SignupComponent,
     PostCreateComponent,
-    PostListComponent
+    PostListComponent,
+    ErrorComponent,
+    PostDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +36,15 @@ import { PostListComponent } from "./posts/post-list/post-list.component";
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [UserService, AuthService],
-  bootstrap: [AppComponent]
+  providers: [UserService, 
+              AuthService, 
+              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+              {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+            ],
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponent]
 })
 export class AppModule { }

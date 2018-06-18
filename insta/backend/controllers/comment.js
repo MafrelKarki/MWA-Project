@@ -4,11 +4,33 @@ const Comment = require('../models/comment');
 const User = require('../models/user');
 
 
-exports.getAllCommentsOnAPostByUser = (req, res, next)=>{
+exports.getAllCommentsOnAPostOfUser = (req, res, next)=>{
   var userId = req.params.userid;
   var postId = req.params.postid;
-  console.log("***********************");
-  console.log("retrieving all the comments of the post "+postId+ " of user "+userId);
+  // console.log("***********************");
+  // console.log("retrieving all the comments of the post "+postId+ " of user "+userId);
+
+  let allComments = [];
+  Post.findById(postId)
+      .populate({
+        path: 'comments',
+        model: 'Comment',
+        select: {
+          _id: 1,
+          userFullName: 1,
+          comment: 1,
+          isAnonymous: 1,
+          createdAt: 1,
+          updatedAt: 1
+
+        }
+      }).exec((err, post) => {
+        res.status(200).json({
+            comments: post.comments
+        })
+      });
+
+
 }
 
 exports.getCommentByCommentId = (req, res, next)=>{

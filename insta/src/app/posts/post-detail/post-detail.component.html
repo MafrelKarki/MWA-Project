@@ -1,7 +1,7 @@
 <main>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <mat-accordion multi="true" hideToggle="true" *ngIf="posts.length > 0 && !isLoading">
-    <mat-expansion-panel *ngFor="let post of posts" hideToggle="true" expanded disabled>
+  <mat-accordion multi="true" hideToggle="true" *ngIf="!isLoading">
+    <mat-expansion-panel hideToggle="true" expanded disabled>
       <mat-expansion-panel-header>
         {{ post.title }}
       </mat-expansion-panel-header>
@@ -24,8 +24,14 @@
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
-  <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>
   <br/>
-  <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)"
-    *ngIf="posts.length > 0"></mat-paginator>
+  <mat-card>
+      <form (submit)="onComment(commentForm)" #commentForm="ngForm">
+          <mat-form-field>
+            <input matInput name="comment" ngModel placeholder="Comment" #commentInput="ngModel" required>
+            <mat-error *ngIf="commentInput.invalid">Please enter a comment.</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="accent" type="submit">Post</button>
+        </form>
+  </mat-card>
 </main>

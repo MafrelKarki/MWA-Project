@@ -9,6 +9,7 @@ const postRoutes = require("./routes/post");
 const commentRoutes = require("./routes/comment");
 const likeRoutes = require("./routes/like");
 const followRoutes = require("./routes/follow");
+const feedRoutes = require("./routes/posts");
 
 const app = express();
 
@@ -24,7 +25,7 @@ mongoose
   });
 
 app.use(bodyParser.json());
-app.use("/images", express.static(path.join("backend/images")));
+app.use("/images", express.static(path.join("images")));
 
 app.set('x-powered-by', false);
 app.set('trues-proxy', true);
@@ -51,6 +52,7 @@ app.use("/api/v1/users", commentRoutes);
 app.use("/api/v1/users", commentRoutes);
 app.use("/api/v1/users", likeRoutes);
 app.use("/api/v1/users", followRoutes);
+app.use("/api/v1/posts", feedRoutes);
 
 
 // app.post("/api/posts", (req, res, next) => {
