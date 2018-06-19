@@ -21,12 +21,16 @@ main {
   margin: 1rem auto;
 }
 
-.mat-icon {
+.mat-icon{
   background-repeat: no-repeat;
   display: inline-block;
   fill: currentColor;
   height: 24px;
   width: 24px;
+  color: black;
+}
+
+.mat-icon#fav{
   color: red;
 }
 

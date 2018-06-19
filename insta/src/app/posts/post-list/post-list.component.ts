@@ -40,7 +40,6 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
-        console.log(this.posts);
       });
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(isAuthenticated=>{
@@ -63,8 +62,21 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
-  like(postId: string) {
-    alert('liked');
+  like(postId: string, post: PostWithCount) {
+    // this.postsService.likeUnlike(post.userId, post.id, this.userId).subscribe(()=>{
+    //   if(post.liked){
+    //     post.likes--;
+    //   } else {
+    //     post.likes++;
+    //   }
+    //   post.liked = !post.liked;
+    // });
+    if(post.liked){
+      post.likes--;
+    } else {
+      post.likes++;
+    }
+    post.liked = !post.liked;
   }
 
   ngOnDestroy() {

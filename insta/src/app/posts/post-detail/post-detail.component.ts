@@ -39,7 +39,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
           imagePath: postData.imagePath, 
           userId: postData.userId,
           comments: postData.comments.length,
-          likes: postData.likes.length
+          likes: postData.likes.length,
+          liked: false
         };
       });
       this.postsService.getComments(this.userId, this.postId).subscribe(comments=>{
@@ -69,8 +70,21 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     });
   }
 
-  like(postId: string) {
-    alert('liked');
+  like(postId: string, post: PostWithCount) {
+    // this.postsService.likeUnlike(post.userId, post.id, this.userId).subscribe(()=>{
+    //   if(post.liked){
+    //     post.likes--;
+    //   } else {
+    //     post.likes++;
+    //   }
+    //   post.liked = !post.liked;
+    // });
+    if(post.liked){
+      post.likes--;
+    } else {
+      post.likes++;
+    }
+    post.liked = !post.liked;
   }
 
   ngOnDestroy() {

@@ -11,7 +11,11 @@
       <p>{{ post.content }}</p>
       <mat-action-row>
         <div>
-          <button mat-icon-button (click)="like(post.id)">
+          <button mat-icon-button (click)="like(post.id, post)" *ngIf="post.liked">
+            <!-- <mat-icon>favorite_border</mat-icon> -->
+            <mat-icon id="fav">favorite</mat-icon>
+          </button>
+          <button mat-icon-button (click)="like(post.id, post)" *ngIf="!post.liked">
             <!-- <mat-icon>favorite_border</mat-icon> -->
             <mat-icon>favorite</mat-icon>
           </button>
@@ -19,7 +23,7 @@
         </div>
         <div>
           <button mat-icon-button>
-            <mat-icon id="comment">mode_comment</mat-icon>
+            <mat-icon id="comment" [routerLink]="['/detail', post.id]">mode_comment</mat-icon>
           </button>
           {{ post.comments }}
         </div>

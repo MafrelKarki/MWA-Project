@@ -121,4 +121,8 @@ export class PostsService {
       .get(`http://localhost:3000/api/v1/users/${userId}/posts/${postId}/comments`);
   }
 
+  likeUnlike(userId:string, postId: string, liker_id: string){
+    return this.http.get(`http://localhost:3000/api/v1/users/${userId}/posts/${postId}/likes/${liker_id}`);
+  }
+
 }

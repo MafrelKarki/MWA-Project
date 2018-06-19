@@ -6,5 +6,6 @@ export interface PostWithCount {
     userId: string;
     comments: number;
     likes: number;
+    liked: boolean;
   }
   
