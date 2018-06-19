@@ -44,8 +44,7 @@ Resources
 -Likes
 **************************************************************************************
 (a user's one post's all likes) Get - /api/v1/users/:userid/posts/:postid/likes
-(like a user's post) Post- /api/v1/users/:userid/posts/:postid/likes/:liker_id
-(unlike a user's post) Put - /api/v1/users/:userid/posts/:postid/likes/:unliker_id
+(like or Unlike a user's post) Post- /api/v1/users/:userid/posts/:postid/likes/:liker_id
 
 
 
@@ -63,10 +62,6 @@ Resources
 
 (follow a user)
           Put- /api/v1/users/:userid/follow/:followingUserId    ==> (add "followingUserId" in user1's following list and "userid" in user2's followers list)
-
-(unfollow a user)
-          Delete- /api/v1/users/:userid/unfollow/:unfollowingUserId ==>(remove "unfollowingUserId" from user1's following list and remove "userid" from user2's followers list)
-
 
 
 

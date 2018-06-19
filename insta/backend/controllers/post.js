@@ -94,7 +94,7 @@ exports.updatePost = (req, res, next) => {
     },
     (err, updatedPost) => {
       if (err) {
-        return res.status(200).send({
+        return res.status(204).send({
           message: "Error Updating Post"
         });
       }
