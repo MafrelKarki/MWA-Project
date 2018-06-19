@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 var SchemaTypes = mongoose.Schema.Types;
 
 const postSchema = mongoose.Schema({
-  // content: { type: String, required: true },
   title: { type: String, required: true },
   content: { type: String},
   imagePath: {type: String, required: true},
