@@ -31,7 +31,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.postsService.getPost(this.postId).subscribe(postData => {
         this.isLoading = false;
-        this.post = { id: postData._id, title: postData.title, content: postData.content, imagePath: postData.imagePath, creator: postData.creator };
+        this.post = { id: postData._id, title: postData.title, content: postData.content, imagePath: postData.imagePath, userId: postData.userId };
       });
     });
   }
@@ -40,8 +40,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       return;
     }
-    alert(form.value.comment);
-    this.postsService.addComment(this.postId, this.userId);
+    this.postsService.addComment(this.post.userId, this.postId, this.userId, form.value.comment);
   }
 
   onDelete(postId: string) {

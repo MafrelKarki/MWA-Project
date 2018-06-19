@@ -26,7 +26,7 @@ export class PostsService {
             content: post.content,
             id: post._id,
             imagePath: post.imagePath,
-            creator: post.creator
+            userId: post.userId
           };
         }), maxPosts: postData.maxPosts};
       }))
@@ -49,7 +49,7 @@ export class PostsService {
       title:string, 
       content:string, 
       imagePath: string, 
-      creator: string
+      userId: string
     }>("http://localhost:3000/api/posts/" + id);
   }
 
@@ -79,7 +79,7 @@ export class PostsService {
         title:title,
         content:content,
         imagePath:image,
-        creator: null
+        userId: null
       };
     }
     this.http
@@ -93,8 +93,13 @@ export class PostsService {
     return this.http.delete("http://localhost:3000/api/posts/" + postId);
   }
 
-  addComment(postId: string, userId: string){
-    
+  addComment(userId:string, postId: string, commenterId: string, comment: string){
+    // Post- /api/v1/users/:userid/posts/:postid/comments/:commenterId
+    this.http
+      .post(`http://localhost:3000/api/v1/users/${userId}/posts/${postId}/comments/${commenterId}`, {comment:comment})
+      .subscribe(responseData => {
+        alert("Comment posted");
+      });
   }
 
 }
