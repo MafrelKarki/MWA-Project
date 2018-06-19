@@ -4,11 +4,33 @@ const Comment = require('../models/comment');
 const User = require('../models/user');
 
 
-exports.getAllCommentsOnAPostByUser = (req, res, next)=>{
+exports.getAllCommentsOnAPostOfUser = (req, res, next)=>{
   var userId = req.params.userid;
   var postId = req.params.postid;
-  console.log("***********************");
-  console.log("retrieving all the comments of the post "+postId+ " of user "+userId);
+  // console.log("***********************");
+  // console.log("retrieving all the comments of the post "+postId+ " of user "+userId);
+
+  let allComments = [];
+  Post.findById(postId)
+      .populate({
+        path: 'comments',
+        model: 'Comment',
+        select: {
+          _id: 1,
+          userFullName: 1,
+          comment: 1,
+          isAnonymous: 1,
+          createdAt: 1,
+          updatedAt: 1
+
+        }
+      }).exec((err, post) => {
+        res.status(200).json({
+            comments: post.comments
+        })
+      });
+
+
 }
 
 exports.getCommentByCommentId = (req, res, next)=>{
@@ -16,8 +38,18 @@ exports.getCommentByCommentId = (req, res, next)=>{
   var postId = req.params.postid;
   var commentId = req.params.commentid;
 
-  console.log("***********************");
-  console.log("retrieving comment "+commentId+ " of the post "+postId+ " of user "+userId);
+  // console.log("***********************");
+  // console.log("retrieving comment "+commentId+ " of the post "+postId+ " of user "+userId);
+
+  Comment.findById(commentId).then(result=>{
+    res.status(200).json({
+      comment: result
+    })
+  }).catch(err=>{
+    res.status(204).json({
+      message: "Error Fetching comment"
+    })
+  })
 }
 
 exports.createCommentToAPostByUser = (req, res, next)=>{
@@ -77,8 +109,31 @@ exports.updateCommentToAPostByUser = (req, res, next) => {
   var postId = req.params.postid;
   var commentId = req.params.commentid;
 
-  console.log("***********************");
-  console.log("updating comment "+commentId+ " of the post "+postId+ " by user "+userId);
+  // console.log("***********************");
+  // console.log("updating comment "+commentId+ " of the post "+postId+ " by user "+userId);
+
+  Comment.findByIdAndUpdate(
+    commentId,
+    req.body,
+    { new: true },
+    (err, updatedComment) =>{
+      if(err){
+        return res.status(204).send({
+          message: "Error updating Comment"
+        });
+      }
+
+      return res.status(200).send({
+        message: "comment has been updated",
+        comment: updatedComment
+      })
+    }
+  ).catch(err=>{
+    return res.status(500).send({
+      message: err
+    });
+  });
+
 }
 
 exports.deleteCommentByCommentId = (req, res, next) =>{
@@ -86,6 +141,22 @@ exports.deleteCommentByCommentId = (req, res, next) =>{
   var postId = req.params.postid;
   var commentId = req.params.commentid;
 
-  console.log("***********************");
-  console.log("deleting comment "+commentId+ " of the post "+postId+ " by user "+userId);
+  // console.log("***********************");
+  // console.log("deleting comment "+commentId+ " of the post "+postId+ " by user "+userId);
+
+  Comment.findByIdAndDelete(commentId, (err, status) =>{
+    if(err){
+      return res.status(204).send({
+        message: "The requested comment doesn't exist"
+      });
+    }
+
+    return res.status(200).send({
+      message: "The comment has been deleted successfully"
+    });
+  }).catch(err =>{
+    return res.status(500).send({
+      message: err
+    });
+  });
 }

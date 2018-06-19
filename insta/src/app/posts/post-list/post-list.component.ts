@@ -5,6 +5,7 @@ import { Post } from "../post.model";
 import { PostsService } from "../posts.service";
 import { PageEvent } from "@angular/material";
 import { AuthService } from "../../auth/auth.service";
+import { PostWithCount } from "../posts-with-count.model";
 
 @Component({
   selector: "app-post-list",
@@ -17,7 +18,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   //   { title: "Second Post", content: "This is the second post's content" },
   //   { title: "Third Post", content: "This is the third post's content" }
   // ];
-  posts: Post[] = [];
+  posts: PostWithCount[] = [];
   private postsSub: Subscription;
   isLoading = false;
   totalPosts = 0;
@@ -35,10 +36,11 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsService.getPosts(this.postsPerPage, this.currentPage);
     this.userId = this.authService.getUserId();
     this.postsSub = this.postsService.getPostUpdateListener()
-      .subscribe((postData: {posts: Post[]; postCount: number})=> {
+      .subscribe((postData: {posts: PostWithCount[]; postCount: number})=> {
         this.isLoading = false;
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
+        console.log(this.posts);
       });
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(isAuthenticated=>{

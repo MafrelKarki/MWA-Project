@@ -4,12 +4,16 @@ import { Subject } from "rxjs";
 import { map } from 'rxjs/operators';
 
 import { Post } from "./post.model";
+import { PostWithCount} from './posts-with-count.model';
 import { Router } from "@angular/router";
+import { Comment } from "./comment.model";
 
 @Injectable({ providedIn: "root" })
 export class PostsService {
   private posts: Post[] = [];
-  private postsUpdated = new Subject<{posts: Post[], postCount: number}>();
+  private postsWithCount: PostWithCount[] = [];
+  private postsUpdated = new Subject<{posts: PostWithCount[], postCount: number}>();
+  comments: Comment[] = [];
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -26,14 +30,16 @@ export class PostsService {
             content: post.content,
             id: post._id,
             imagePath: post.imagePath,
-            userId: post.userId
+            userId: post.userId,
+            comments: post.comments.length,
+            likes: post.likes.length
           };
         }), maxPosts: postData.maxPosts};
       }))
       .subscribe(transformedPostData => {
-        this.posts = transformedPostData.posts;
+        this.postsWithCount = transformedPostData.posts;
         this.postsUpdated.next({
-          posts: [...this.posts],
+          posts: [...this.postsWithCount],
           postCount: transformedPostData.maxPosts
         });
       });
@@ -49,7 +55,9 @@ export class PostsService {
       title:string, 
       content:string, 
       imagePath: string, 
-      userId: string
+      userId: string,
+      comments: any[],
+      likes: any[]
     }>("http://localhost:3000/api/posts/" + id);
   }
 
@@ -94,12 +102,23 @@ export class PostsService {
   }
 
   addComment(userId:string, postId: string, commenterId: string, comment: string){
-    // Post- /api/v1/users/:userid/posts/:postid/comments/:commenterId
-    this.http
-      .post(`http://localhost:3000/api/v1/users/${userId}/posts/${postId}/comments/${commenterId}`, {comment:comment})
-      .subscribe(responseData => {
-        alert("Comment posted");
-      });
+    return this.http
+      .post(`http://localhost:3000/api/v1/users/${userId}/posts/${postId}/comments/${commenterId}`, {comment:comment});
+  }
+
+  getComments(userId:string, postId:string){
+    // userId: string;
+    // userFullName: string;
+    // comment: string;
+    // isAnonymous: boolean;
+    // createdAt: Date;
+    // updatedAt: Date;
+    // this.comments.push({
+    //   comm
+    // });
+    // /:userid/posts/:postid/comments
+    return this.http
+      .get(`http://localhost:3000/api/v1/users/${userId}/posts/${postId}/comments`);
   }
 
 }

@@ -5,6 +5,7 @@ import { PostsService } from '../posts.service';
 import { AuthService } from '../../auth/auth.service';
 import { ParamMap, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { PostWithCount } from '../posts-with-count.model';
 
 @Component({
   selector: 'app-post-detail',
@@ -13,13 +14,14 @@ import { NgForm } from '@angular/forms';
 })
 export class PostDetailComponent implements OnInit, OnDestroy {
 
-  post: Post;
+  post: PostWithCount;
   private postsSub: Subscription;
   isLoading = false;
   private authStatusSub: Subscription;
   userIsAuthenticated = false;
   userId: string;
   postId: string;
+  comments: Comment[] = [];
 
   constructor(public postsService: PostsService, private authService: AuthService, public route: ActivatedRoute) { }
 
@@ -31,7 +33,18 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.postsService.getPost(this.postId).subscribe(postData => {
         this.isLoading = false;
-        this.post = { id: postData._id, title: postData.title, content: postData.content, imagePath: postData.imagePath, userId: postData.userId };
+        this.post = { id: postData._id, 
+          title: postData.title, 
+          content: postData.content, 
+          imagePath: postData.imagePath, 
+          userId: postData.userId,
+          comments: postData.comments.length,
+          likes: postData.likes.length
+        };
+      });
+      this.postsService.getComments(this.userId, this.postId).subscribe(comments=>{
+        // comments[0]['userId']
+        this.comments = comments['comments'];        
       });
     });
   }
@@ -40,7 +53,13 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     if (form.invalid) {
       return;
     }
-    this.postsService.addComment(this.post.userId, this.postId, this.userId, form.value.comment);
+    this.postsService.addComment(this.post.userId, this.postId, this.userId, form.value.comment)
+      .subscribe(()=>{
+        form.reset();
+        this.postsService.getComments(this.userId, this.postId).subscribe(comments=>{
+          this.comments = comments['comments'];        
+        });
+      });
   }
 
   onDelete(postId: string) {
