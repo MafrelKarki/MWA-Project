@@ -33,10 +33,10 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.postsService.getPost(this.postId).subscribe(postData => {
         this.isLoading = false;
-        this.post = { id: postData._id, 
-          title: postData.title, 
-          content: postData.content, 
-          imagePath: postData.imagePath, 
+        this.post = { id: postData._id,
+          title: postData.title,
+          content: postData.content,
+          imagePath: postData.imagePath,
           userId: postData.userId,
           comments: postData.comments.length,
           likes: postData.likes.length,
@@ -45,7 +45,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       });
       this.postsService.getComments(this.userId, this.postId).subscribe(comments=>{
         // comments[0]['userId']
-        this.comments = comments['comments'];        
+        this.comments = comments['comments'];
       });
     });
   }
@@ -58,7 +58,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       .subscribe(()=>{
         form.reset();
         this.postsService.getComments(this.userId, this.postId).subscribe(comments=>{
-          this.comments = comments['comments'];        
+          this.comments = comments['comments'];
         });
       });
   }
@@ -71,20 +71,20 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   like(postId: string, post: PostWithCount) {
-    // this.postsService.likeUnlike(post.userId, post.id, this.userId).subscribe(()=>{
-    //   if(post.liked){
-    //     post.likes--;
-    //   } else {
-    //     post.likes++;
-    //   }
-    //   post.liked = !post.liked;
-    // });
-    if(post.liked){
-      post.likes--;
-    } else {
-      post.likes++;
-    }
-    post.liked = !post.liked;
+    this.postsService.likeUnlike(post.userId, post.id, this.userId).subscribe(()=>{
+      if(post.liked){
+        post.likes--;
+      } else {
+        post.likes++;
+      }
+      post.liked = !post.liked;
+    });
+    // if(post.liked){
+    //   post.likes--;
+    // } else {
+    //   post.likes++;
+    // }
+    // post.liked = !post.liked;
   }
 
   ngOnDestroy() {
