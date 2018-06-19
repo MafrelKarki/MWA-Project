@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 var SchemaTypes = mongoose.Schema.Types;
 
+mongoose.plugin(require('mongoose-regex-search'));
+
+
 const userSchema = mongoose.Schema({
     fullName: {type: String, required: true},
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true, searchable: true, index: true},
     password: { type: String, required: true },
     dob: {type: Date},
     profilePicUrl: {type: String},

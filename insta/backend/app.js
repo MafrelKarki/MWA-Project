@@ -11,6 +11,7 @@ const likeRoutes = require("./routes/like");
 const followRoutes = require("./routes/follow");
 const feedRoutes = require("./routes/posts");
 const postsRoutes = require("./routes/posts");
+const searchRoutes = require("./routes/searchUser");
 // const commentRoutes = require("./routes/comment");
 
 const app = express();
@@ -54,6 +55,7 @@ app.use('/api/v1/users', postRoutes);
 // app.use("/api/v1/users", commentRoutes);
 app.use("/api/v1/users", likeRoutes);
 app.use("/api/v1/users", followRoutes);
+app.use("/api/v1/users", searchRoutes);
 app.use("/api/v1/posts", feedRoutes);
 
 

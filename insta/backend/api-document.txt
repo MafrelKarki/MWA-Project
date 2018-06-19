@@ -53,6 +53,10 @@ Resources
 (a user's all followers) Get- /api/v1/users/:userid/followers
 
 
+-search
+**************************************************************************************
+(Search based on user's email) Get- /api/v1/users/search
+
 
 
 -Followings

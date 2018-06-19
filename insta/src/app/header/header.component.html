@@ -3,6 +3,12 @@
     <a routerLink="/posts">Instanonymous</a>
   </span>
   <span class="spacer"></span>
+  <input *ngIf="userIsAuthenticated" type="text" [(ngModel)]="searchQuery" (change)="search(searchQuery)">
+  <ul *ngIf="userIsAuthenticated && users">
+    <li *ngFor="let user of users">
+      {{ user.fullName }}
+    </li>
+  </ul>
   <ul>
     <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
