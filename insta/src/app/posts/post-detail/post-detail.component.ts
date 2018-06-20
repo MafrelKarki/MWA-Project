@@ -71,20 +71,20 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   like(postId: string, post: PostWithCount) {
-    // this.postsService.likeUnlike(post.userId, post.id, this.userId).subscribe(()=>{
-    //   if(post.liked){
-    //     post.likes--;
-    //   } else {
-    //     post.likes++;
-    //   }
-    //   post.liked = !post.liked;
-    // });
-    if(post.liked){
-      post.likes--;
-    } else {
-      post.likes++;
-    }
-    post.liked = !post.liked;
+    this.postsService.likeUnlike(post.userId, post.id, this.userId).subscribe(()=>{
+      if(post.liked){
+        post.likes--;
+      } else {
+        post.likes++;
+      }
+      post.liked = !post.liked;
+    });
+    // if(post.liked){
+    //   post.likes--;
+    // } else {
+    //   post.likes++;
+    // }
+    // post.liked = !post.liked;
   }
 
   ngOnDestroy() {

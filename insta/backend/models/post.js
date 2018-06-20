@@ -13,4 +13,13 @@ const postSchema = mongoose.Schema({
   updatedAt: {type:Date, Default:Date.now}
 });
 
+postSchema.methods.like = function(userId) {
+  if(this.likes.find(user => user._id == userId)) {
+      this.likes.pull(userId);
+  } else {
+    this.likes.push(userId);
+  }
+  return this.save();
+};
+
 module.exports = mongoose.model('Post', postSchema);
