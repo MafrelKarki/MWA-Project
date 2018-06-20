@@ -16,9 +16,8 @@ const followRoutes = require("./routes/follow");
 const app = express();
 
 mongoose
-  .connect(
-    "mongodb://localhost:27017/instanonymous"
-  )
+  .connect("mongodb://localhost:27017/instanonymous")
+  // .connect("mongodb://dbadmin:mongo@12@ds018258.mlab.com:18258/instanonymous")
   .then(() => {
     console.log("Connected to database!");
   })
