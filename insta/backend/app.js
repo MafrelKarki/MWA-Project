@@ -5,9 +5,13 @@ const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/user");
 const postsRoutes = require("./routes/posts");
+
+const postRoutes = require("./routes/post");
 const commentRoutes = require("./routes/comment");
 const likeRoutes = require("./routes/like");
 const searchRoutes = require("./routes/searchUser");
+
+const followRoutes = require("./routes/follow");
 
 const app = express();
 
@@ -23,7 +27,9 @@ mongoose
   });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
@@ -44,5 +50,7 @@ app.use("/api/posts", postsRoutes);
 app.use("/api/v1/users", commentRoutes);
 app.use("/api/v1/users", likeRoutes);
 app.use("/api/v1/users", searchRoutes);
+app.use("/api/v1/users", postRoutes);
+app.use("/api/v1/users", followRoutes);
 
 module.exports = app;

@@ -1,227 +1,25 @@
-/* .profile-wrapper {
-  margin: auto;
-  width: 600px;
+.user-profile-wrapper{
+  padding: 25px;
+  max-width: 600px;
+  margin: 0 auto;
+
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
-.profile-wrapper .info {
-    padding-bottom: 21px;
-    padding-right: 180px;
-    margin-bottom: 10px;
-    position: relative;
-    min-height: 156px;
+
+.user-profile-img{
+  float: left;
+  width: 152px;
+  margin-right: 48px;
 }
-.profile-wrapper .info .profile-picture {
-      background-image: url('/assets/profile-placeholder.jpg');
-      background-color: white;
-      background-size: 100%;
-      border-radius: 50%;
-      position: absolute;
-      overflow: hidden;
-      height: 156px;
-      width: 156px;
-      z-index: 1;
-      right: 0;
-      top: 0;
+.user-profile-info{
+  padding-left: 200px;
 }
-.profile-wrapper .info .profile-picture img {
-        background-color: white;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: 3;
-        left: 0;
-        top: 0;
-      }
-.profile-wrapper .info .profile-picture label {
-        -webkit-transition: 0.3s all;
-        -moz-transition: 0.3s all;
-        -ms-transition: 0.3s all;
-        -o-transition: 0.3s all;
-        transition: 0.3s all;
-        background-color: rgba(0,0,0,0.6);
-        text-align: center;
-        position: relative;
-        cursor: pointer;
-        display: block;
-        height: 100%;
-        width: 100%;
-        opacity: 0;
-        z-index: 4;
+.user-profile-title{
+  font-size: 22px;
 }
-.profile-wrapper .info .profile-picture label input { display: none; }
-.profile-wrapper .info .profile-picture label .icon {
-          color: rgba(255, 255, 255, 0.8);
-          text-align: center;
-          line-height: 156px;
-          font-size: 48px;
-        }
-.profile-wrapper .info .profile-picture label:hover label {
-    opacity: 1;
-      }
-      .profile-wrapper .info .profile-picture .name input {
-        background-color: rgba(0,0,0,0.1);
-        color: rgba(0,0,0,0.84);
-        font-weight: bold;
-        font-size: 31px;
-        padding: 0 10px;
-        display: block;
-        outline: none;
-        border: none;
-        width: 100%;
-      }
-      .profile-wrapper .info .profile-picture .name input:disabled {
-          background-color: transparent;
-        }
-        .profile-wrapper .info .profile-picture .bio {
-      margin:10px 0;
-        }
-        .profile-wrapper .info .profile-picture .bio textarea {
-        background-color: rgba(0,0,0,0.1);
-        color: rgba(0,0,0,0.76);
-        font-size: 19px;
-        display: block;
-        padding: 10px;
-        outline: none;
-        height: 100px;
-        resize: none;
-        border: none;
-        width: 100%;
-        }
-        .profile-wrapper .info .profile-picture .bio textarea:disabled {
-          background-color: transparent;
-        }
-        .profile-wrapper .info.follower-info {
-      color: rgba(0,0,0,0.68);
-      position: absolute;
-      font-size: 14px;
-      bottom: 0;
-      left: 0;
-        }
-        .profile-wrapper .info.follower-infospan { margin: 0 5px; }
-        .profile-wrapper .actions .btn {
-      border: 1px solid rgba(0,0,0,.15);
-      background-color: transparent;
-      color: rgba(0,0,0,0.68);
-      border-radius: 3px;
-      padding: 7px 20px;
-      font-size: 15px;
-      cursor: pointer;
-      outline: none;
-      -webkit-transition:.3s all;
-      -moz-transition:.3s all;
-      -ms-transition:.3s all;
-      -o-transition:.3s all;
-      transition:.3s all;
-        }
-      .profile-wrapper .actions .btn.btn-update, .profile-wrapper .actions .btn.btn-follow {
-        border-color: rgba(26, 188, 156,.3);
-        color: rgba(26, 188, 156,1.0);
-      }
-      .profile-wrapper .actions .btn.btn-update:hover, .profile-wrapper .actions .btn.btn-follow:hover {
-          border-color: rgba(26, 188, 156,1.0);
-          color: rgba(26, 188, 156,1.0);
-        }
-        .profile-wrapper .actions .btn.btn-unfollow {
-        background-color: rgba(26,188,156,.8);
-        border-color: rgba(26, 188, 156,.8);
-        color: white;}
-        .profile-wrapper .actions .btn.btn-unfollow:hover {
-          background-color: rgba(26,188,156,1.0);
-          border-color: rgba(26, 188, 156,1.0);
-          color: white;
-        }
-        .profile-wrapper .actions .btn:hover {
-        border-color: rgba(0,0,0,.54);
-      }
-  .user-data {
-    margin-top: 30px;
-    width: 100%;
-  }
-  .user-data .tabs {
-      overflow: hidden;
-  }
-  .user-data .tabs .tab {
-        color: rgba(0,0,0,0.54);
-        padding: 10px 5px;
-        cursor: pointer;
-        font-size: 14px;
-        margin: 0 5px;
-        float: left;
-        -webkit-transition:.3s all;
-        -moz-transition:.3s all;
-        -ms-transition:.3s all;
-        -o-transition:.3s all;
-        transition:.3s all;
-  }
-  .user-data .tabs .tab.active {
-          border-bottom: 1px solid rgba(0,0,0,0.54);
-        }
-        .user-data .tabs .tab:hover {
-          color: rgba(0,0,0,0.78);
-        }
-        .user-data .tabs .tab .content-container {
-      padding: 20px 0;
-        }
-        .user-data .tabs .tab .content-container .posts {
-        border: 1px solid rgba(0,0,0,.15);
-        background-color: white;
-        border-radius: 3px;
-        }
-        .user-data .tabs .tab .content-container .posts .post {
-          border-bottom: 1px solid rgba(0,0,0,.15);
-          position: relative;
-          padding: 15px;
-          height: 95px;
-          padding-right: 95px;
-        }
-        .user-data .tabs .tab .content-container .posts .post:last-child {
-            border: none;
-          }
-          .user-data .tabs .tab .content-container .posts .post .post-title {
-            color: rgba(0,0,0,.78);
-            margin-bottom: 10px;
-            font-weight: bold;
-            font-size: 19px;
-            cursor: pointer;
-            display: block;
-            -webkit-transition:.3s all;
-            -moz-transition:.3s all;
-            -ms-transition:.3s all;
-            -o-transition:.3s all;
-            transition:.3s all;}
-            .user-data .tabs .tab .content-container .posts .post .post-title:hover {
-              color: #1abc9c;
-            }
-            .user-data .tabs .tab .content-container .posts .post .post-meta {
-            color: rgba(0,0,0,.54);
-            overflow: hidden;
-            font-size:14px;
-            }
-            .user-data .tabs .tab .content-container .posts .post .post-meta div {
-              margin-right: 10px;
-              float: left;
-            }
-            .user-data .tabs .tab .content-container .posts .post .post-meta:last-child {
-                margin: 0;
-              }
-              .user-data .tabs .tab .content-container .posts .post .post-image {
-            background-position: center;
-            background-size: auto;
-            position: absolute;
-            height: 65px;
-            width: 65px;
-            right: 15px;
-            top: 15px;
-          }
-          .user-data .tabs .tab .content-container .posts .retrieve-more {
-        border: 1px solid rgba(0,0,0,.15);
-        background-color: white;
-        border-radius: 3px;
-        text-align: center;
-        font-size: 13px;
-        cursor: pointer;
-        color: #1abc9c;
-        padding: 10px;
-        margin: auto;
-        width: 140px;
-        margin-top: 20px;
-      } */
+.user-profile-title button{
+  margin-left: 10px;
+}
+.user-profile-margin{
+  margin: 10px 0;
+}

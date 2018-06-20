@@ -4,14 +4,17 @@ import { HttpClient } from '@angular/common/http';
 
 const BACKEND_URL = environment.apiUrl + '/';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class SearchService {
+export class FollowService {
 
   constructor(private http: HttpClient) { }
 
-  searchUsers(query: string) {
-    return this.http.get(BACKEND_URL + 'users/mafrel/search?email=' + query);
+  followAUser(searched_id: String, follower_id: String) {
+    return this.http.post(BACKEND_URL + 'v1/users/' + searched_id + '/follow/' + follower_id, null);
+
   }
+
 }

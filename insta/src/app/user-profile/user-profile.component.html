@@ -1,0 +1,23 @@
+<div class="user-profile-wrapper">
+
+  <div class="user-profile-img">
+    <img *ngIf="user" mat-card-avatar [src]="user.imagePathUrl">
+  </div>
+
+  <div class="user-profile-info">
+    <div class="user-profile-title user-profile-margin">
+      <mat-card-title *ngIf="user">{{user.fullName}}</mat-card-title>
+      <button *ngIf="user && (userId == user._id)" mat-raised-button color="primary" (click)="editUserProfile(user._id)">Edit</button>
+      <button *ngIf="user && (userId != user._id)"  mat-raised-button color="primary"  (click)="followUser(user._id, userId)">Follow</button>
+    </div>
+    <div class="user-profile-meta user-profile-margin">
+      Followers: <mat-card-title *ngIf="user">{{user.followers.length}}</mat-card-title>
+      <span class="spacer"></span>
+      Followings: <mat-card-title *ngIf="user">{{user.followings.length}}</mat-card-title>
+    </div>
+    <div class="user-profile-email user-profile-margin">
+      <mat-card-content *ngIf="user">{{user.email}}</mat-card-content>
+    </div>
+  </div>
+
+</div>

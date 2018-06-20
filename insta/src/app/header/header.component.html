@@ -7,11 +7,16 @@
 
   <span class="spacer"></span>
   <mat-form-field *ngIf="userIsAuthenticated">
+    <!-- <md-input-container>
+      <md-placeholder>
+          <md-icon>face</md-icon>
+      </md-placeholder> -->
     <input placeholder="search" matInput [matAutocomplete]="auto" (keyup)="search($event)">
+    <!-- </md-input-container> -->
   </mat-form-field>
 
-  <mat-autocomplete #auto="matAutocomplete" >
-    <mat-option *ngFor="let user of users"  (onSelectionChange)="viewUserProfile(user._id)">{{user.email}}</mat-option>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let user of users" (onSelectionChange)="viewUserProfile(user._id)">{{user.email}}</mat-option>
   </mat-autocomplete>
 
   <span class="spacer"></span>

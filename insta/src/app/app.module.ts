@@ -21,6 +21,7 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
 import { MatAutocompleteModule } from "@angular/material";
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MatCardModule } from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [UserService,
     AuthService,

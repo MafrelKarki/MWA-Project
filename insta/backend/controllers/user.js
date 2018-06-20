@@ -81,6 +81,25 @@ exports.getAllUser = (req, res, next) => {
 exports.getUser = (req, res, next) => {
   var userId = req.params.userid;
 
+  // User.findById(userId)
+  //     .populate({
+  //       path: 'posts',
+  //       model: 'Post',
+  //       select: {
+  //         _id: 1,
+  //         title: 1,
+  //         content: 1,
+  //         imagePath: 1,
+  //         createdAt: 1,
+  //         updatedAt: 1
+
+  //       }
+  //     }).exec((err, user) => {
+  //       res.status(200).json({
+  //           posts: user.posts
+  //       })
+  //     });
+
   User.findById(userId).then(result => {
 
     res.status(200).json({
