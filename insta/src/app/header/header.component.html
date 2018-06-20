@@ -1,16 +1,12 @@
+<!-- @author: Mafrel -->
 <mat-toolbar color="primary">
   <span>
     <a routerLink="/posts">Instanonymous</a>
   </span>
 
   <span class="spacer"></span>
-
-  <span class="spacer"></span>
-
-<!-- @author: Mafrel -->
-
   <mat-form-field *ngIf="userIsAuthenticated">
-    <input placeholder="search" matInput [matAutocomplete]="auto" (keyup)="search($event)">
+    <input placeholder="&nbsp;Search" matInput [matAutocomplete]="auto" (keyup)="search($event)">
   </mat-form-field>
 
   <mat-autocomplete #auto="matAutocomplete">
