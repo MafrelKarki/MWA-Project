@@ -88,8 +88,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.postsSub.unsubscribe();
-    this.authStatusSub.unsubscribe();
+    // this.postsSub.unsubscribe();
+    // this.authStatusSub.unsubscribe();
   }
 
 }

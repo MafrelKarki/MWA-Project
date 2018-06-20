@@ -2,6 +2,18 @@
   <span>
     <a routerLink="/posts">Instanonymous</a>
   </span>
+
+  <span class="spacer"></span>
+
+  <span class="spacer"></span>
+  <mat-form-field *ngIf="userIsAuthenticated">
+    <input placeholder="search" matInput [matAutocomplete]="auto" (keyup)="search($event)">
+  </mat-form-field>
+
+  <mat-autocomplete #auto="matAutocomplete" >
+    <mat-option *ngFor="let user of users"  (onSelectionChange)="viewUserProfile(user._id)">{{user.email}}</mat-option>
+  </mat-autocomplete>
+
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">

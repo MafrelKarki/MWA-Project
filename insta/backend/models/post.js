@@ -4,7 +4,7 @@ var SchemaTypes = mongoose.Schema.Types;
 const postSchema = mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String},
-  imagePath: {type: String, required: true},
+  imagePath: {type: String},
   userId: {type:SchemaTypes.ObjectId},
   points: {type: Number, Default: 0},
   comments: [SchemaTypes.ObjectId],

@@ -3,16 +3,16 @@ ul {
     padding: 0;
     margin: 0;
   }
-  
+
   a {
     text-decoration: none;
     color: white;
   }
-  
+
   ul {
     display: flex;
   }
-  
+
   .spacer {
     flex: 1 1 auto;
   }
@@ -22,4 +22,16 @@ ul {
     top: 0;
     box-shadow: 2px 2px 7px rgba(0,0,0,0.5);
   }
-  
+
+  input{
+    border: 1px solid gray;
+    border-radius: 12px;
+    height: 35px;
+  }
+
+  mat-form-field{
+    font-size: 1em;
+    margin-top: 30px;
+    line-height: 1.5;
+    /* background-color: red; */
+  }

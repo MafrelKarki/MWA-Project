@@ -18,7 +18,9 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
 import { ErrorInterceptor } from "./error-interceptor";
 import { ErrorComponent } from './error/error.component';
 import { PostDetailComponent } from './posts/post-detail/post-detail.component';
-
+import { MatAutocompleteModule } from "@angular/material";
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
     PostCreateComponent,
     PostListComponent,
     ErrorComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -37,13 +40,15 @@ import { PostDetailComponent } from './posts/post-detail/post-detail.component';
     HttpClientModule,
     AngularMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatCardModule
   ],
-  providers: [UserService, 
-              AuthService, 
-              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-              {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
-            ],
+  providers: [UserService,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ErrorComponent]
 })
