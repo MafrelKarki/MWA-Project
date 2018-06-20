@@ -1,3 +1,8 @@
+
+/*
+* @Author: Mafrel
+*
+*/
 const User = require('../models/user');
 
 exports.getAllFollowersOfAUser = (req, res, next) =>{

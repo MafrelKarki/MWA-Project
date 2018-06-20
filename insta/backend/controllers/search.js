@@ -1,3 +1,7 @@
+/*
+* @Author: Mafrel
+*
+*/
 var url = require('url');
 var User = require('../models/user');
 

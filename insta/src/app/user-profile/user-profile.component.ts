@@ -1,3 +1,5 @@
+// @author: Mafrel
+
 import { Component, OnInit, OnDestroy, ElementRef, Renderer } from '@angular/core';
 import { SearchService } from '../search.service';
 import { AuthService } from '../auth/auth.service';

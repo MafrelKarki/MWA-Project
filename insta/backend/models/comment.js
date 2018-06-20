@@ -1,3 +1,7 @@
+/*
+* @Author: Mafrel
+*
+*/
 const mongoose = require('mongoose');
 var SchemaTypes = mongoose.Schema.Types;
 

@@ -1,3 +1,7 @@
+/*
+* @Author: Mafrel
+*
+*/
 const queryString = require('querystring');
 const Post = require('../models/post');
 const User = require('../models/user');

@@ -34,14 +34,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authListenerSubs.unsubscribe();
   }
 
+  // @author:  Mafrel
   search(event) {
     this.searchService.searchUserByEmail(event.target.value).subscribe(response => {
       this.users = response['searchedUsers'];
     });
   }
 
+  // @author: Mafrel
   viewUserProfile(userId: String) {
-    // this.searchQuery = "";
     this.router.navigate(['user/' + userId]);
   }
 

@@ -1,3 +1,7 @@
+/*
+* @Author: Mafrel
+*
+*/
 const { validationResult } = require('express-validator/check');
 const Post = require('../models/post');
 const Comment = require('../models/comment');

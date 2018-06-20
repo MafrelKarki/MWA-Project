@@ -1,3 +1,4 @@
+
 const express = require("express");
 const multer = require("multer");
 
@@ -61,9 +62,9 @@ router.put('/:id', checkAuth, multer({storage: storage}).single("image"), (req, 
         userId: req.userData.userId
     });
     Post.updateOne({ _id: req.params.id, userId: req.userData.userId }, post).then(result => {
-        if(result.nModified>0){        
+        if(result.nModified>0){
             res.status(200).json({ message: "Updated successful!" });
-        } else {        
+        } else {
             res.status(401).json({ message: "Not authorized!" });
         }
     })
@@ -103,9 +104,9 @@ router.get("/:id", (req, res, next) => {
 
 router.delete("/:id", checkAuth, (req, res, next) => {
     Post.deleteOne({ _id: req.params.id, userId: req.userData.userId }).then(result => {
-        if(result.n>0){        
+        if(result.n>0){
             res.status(200).json({ message: "Post deleted!" });
-        } else {        
+        } else {
             res.status(401).json({ message: "Not authorized!" });
         }
     });
